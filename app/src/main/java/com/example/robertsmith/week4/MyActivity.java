@@ -2,6 +2,7 @@ package com.example.robertsmith.week4;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,6 +11,10 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+//Robert Smith
+//MDF3 Term 1407
+//Web Browser
+//This will be a Single Activity application that will serve as an Webview that allows users to send an email
 
 public class MyActivity extends Activity {
 
@@ -48,6 +53,7 @@ public class MyActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Class that responds to webview interaction
     public class WebAppInterface
     {
         public String mEmail;
@@ -59,6 +65,7 @@ public class MyActivity extends Activity {
             mContext = context;
         }
 
+        //method from JS file
         @JavascriptInterface
         public void saveFormFields(String email, String subject, String message)
         {
@@ -68,6 +75,14 @@ public class MyActivity extends Activity {
             this.mEmail = email;
             this.mSubject = subject;
             this.mMessage = message;
+
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String []{mEmail});
+            intent.putExtra(Intent.EXTRA_TEXT, mMessage);
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, mSubject);
+
+            startActivity(Intent.createChooser(intent, "Select Email Client"));
 
 
         }

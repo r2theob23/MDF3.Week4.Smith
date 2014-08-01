@@ -11,7 +11,7 @@ $(document).ready(function(){
 		console.log(formFields[1]);
 		console.log(formFields[2]);
 
-		Android.saveFormFields(formFields[0].value, formFields[1].value, formFields[2]);
+		Android.saveFormFields(formFields[0].value, formFields[1].value, formFields[2].value);
 
 	});
 
