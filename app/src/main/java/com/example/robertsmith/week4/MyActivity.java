@@ -1,9 +1,12 @@
 package com.example.robertsmith.week4;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -11,6 +14,7 @@ import android.webkit.WebView;
 public class MyActivity extends Activity {
 
     public WebView mWebView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,7 @@ public class MyActivity extends Activity {
         mWebView.loadUrl("file:///android_asset/index.html");
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        mWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
     }
 
 
@@ -41,5 +46,31 @@ public class MyActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public class WebAppInterface
+    {
+        public String mEmail;
+        public String mSubject;
+        public String mMessage;
+        public Context mContext;
+
+        WebAppInterface(Context context){
+            mContext = context;
+        }
+
+        @JavascriptInterface
+        public void saveFormFields(String email, String subject, String message)
+        {
+
+            Log.e("I GOT HIT", "YEAAAAA");
+
+            this.mEmail = email;
+            this.mSubject = subject;
+            this.mMessage = message;
+
+
+        }
+
     }
 }

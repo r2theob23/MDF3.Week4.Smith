@@ -1,11 +1,16 @@
 <html>
 <head>
 	<title>Android App</title>
-	<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css" />
-	<script src="js/jquery.mobile-1.4.3.min.js"></script>
+    <link rel="stylesheet" href="css/theme.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
 	<h1>Android App</h1>
+    <div data-role="page" data-theme="b" data-content-theme="b">
 	<div data-role="content">
 
 		<form id="form" method="post">
@@ -17,13 +22,16 @@
 					<input type="text" name="subject"/>
 
 					<label for="message">Message</label>
-					<input type="text" name="message"/>
+					<textarea id="text" name="message" ></textarea>
+
+                    <input class="send" type="submit" value="Send"/>
 
 
 			</fieldset>
 
 		</form>
 	</div>
+    </div>
 
 </body>
 </html>
